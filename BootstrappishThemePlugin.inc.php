@@ -41,6 +41,26 @@ class BootstrappishThemePlugin extends ThemePlugin {
 	function getLocaleFilename($locale) {
 		return null; // No locale data
 	}
+
+	/**
+	 * Activate the theme.
+	 */
+	function activate(&$templateMgr) {
+
+		// Add in jQuery from CMS
+		$jQueryCMS = '	<script language="javascript" type="text/javascript" src="http://code.jquery.com/jquery.js"></script>';
+		$additionalHeadData = $templateMgr->get_template_vars('additionalHeadData');
+		$templateMgr->assign('additionalHeadData', $additionalHeadData."\n".$jQueryCMS);
+
+		// Add in Bootstrap JS
+		$templateMgr->addJavaScript('plugins/themes/bootstrappish/js/bootstrap.min.js');
+		
+		if (($stylesheetFilename = $this->getStylesheetFilename()) != null) {
+			$path = Request::getBaseUrl() . '/' . $this->getPluginPath() . '/' . $stylesheetFilename;
+			$templateMgr->addStyleSheet($path);
+		}
+	}
+
 }
 
 ?>
