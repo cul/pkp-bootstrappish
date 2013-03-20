@@ -1,0 +1,478 @@
+// Colors and Spritesless
+// -------------------------
+
+@cdrsIconSpritePath:        '../img/cdrs-icons.png';
+@cdrsIconWhiteSpritePath:   '../img/cdrs-icons-white.png';
+@cdrsIconColorSpritePath:   '../img/cdrs-icons-color.png';
+@cdrsIconNavySpritePath:   '../img/cdrs-icons-cunavy.png';
+@cdrsIconDesatSpritePath:   '../img/cdrs-icons-cujla.png';
+
+// Basic Scaffolding
+// ------------------------
+.clear-space { margin:0; padding: 0; }
+
+body {
+    margin-bottom: 10px;
+    #grid > .core(@gridColumnWidth, @gridGutterWidth); // Get the grid
+
+    #container {
+        .container;
+        width: 940px !important; // !important required because PKP uses an !important in their definition 
+
+        #header {
+            margin-bottom: 10px;
+        }
+
+        #body {
+            .container;
+            #grid > .core >.span(12);
+
+            #sidebar{
+                width:100%;
+                #rightSidebar {
+                    .clear-space;
+                    #grid > .core >.span(3); // 300px
+                    .pull-right;
+                }
+            }
+
+            #main {
+                #grid > .core >.span(9); // 620px
+                .clear-space;
+                float: left;
+                
+                #navbar {
+                    .clear-space;
+                }
+
+                #breadcrumb {
+                    padding-top: 5px;
+
+                    a {
+                        white-space: nowrap;
+                        &.current {
+                            color: @columbiaNavy;
+                        }
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+
+                #content {
+                    .clear-space;
+                    
+                }
+                #footer {
+                    font-size: 12px;
+                    line-height: 24px;
+                    background: none;
+                    border-top: @columbiaGray solid 1px;
+
+                    margin: 2em 0 4em;
+                    padding-top: 25px;
+
+
+
+                    h1, h2, h3, h4, h5, h6 {
+                        color: @textColor;
+                        text-align: left;
+                        margin-bottom: 10px;
+                    }
+
+                    p, p + p {
+                        .clear-space
+                    }
+                    
+                    #colophon {
+                        margin-top: 20px;
+                    }
+
+                    #sponsors {
+                        font-size: 15px;
+                        text-align: left;
+
+                        a {
+                            padding-right: 30px;
+                            padding-bottom: 15px;
+                            font-size: 15px;
+                            display: inline-block;
+                        }
+
+                        img {
+                            max-width: 100%;
+                            padding: 7px;
+                        }
+                    }
+
+                }
+            }
+        }   
+    }
+}
+
+// Typography
+// ------------------------
+
+body {
+    font-size: 20px; // Crank this up since OCS overrides theme styles with em-based scaling
+
+    a {
+        color: @linkColor;
+        text-decoration: none;
+
+        &:hover {
+            color: @linkColorHover;
+            text-decoration: underline;
+            background: none;
+        }
+
+        &:link, &:visited {
+            color: @linkColor;
+        }
+    }
+
+    #main h2 { color: @columbiaNavy; }
+
+}
+
+br { display: block; } // Why? ;_;
+
+// Sidebars
+// ------------------------
+
+#sidebar {
+
+    div.block {
+
+        .img-rounded;
+
+        background: @bodyBackground;
+        border: 1px solid @columbiaGray;
+        padding: 5px 10px;
+        margin-top: 10px;
+
+        font-size: @baseFontSize;
+
+        img {
+            .img-rounded;
+            max-width: 100% !important;
+        }
+
+        .blockTitle, span.blockTitle {
+            font-family: @headingsFontFamily;
+            font-weight: @headingsFontWeight;
+            font-size: @baseFontSize;
+            line-height: @baseLineHeight;
+            color: @columbiaNavyDark;
+            text-rendering: optimizelegibility; // Fix the character spacing for headings
+            text-transform: none;
+
+            padding: 0 0 5px;
+
+            small {
+                font-size: @baseFontSize;
+                font-weight: normal;
+                line-height: 1;
+                color: @grayLight;
+            }
+        }
+        
+        &#sidebarUser {
+            strong {
+                white-space: nowrap;
+            }
+        }
+
+    }
+
+    div.block:first-child {
+        margin-top: 0;
+    }
+
+    form {
+
+        input, select {
+            max-width: 185px;
+        }
+
+    }
+
+    table {
+
+        td {
+            display: block;
+        }
+
+    }
+
+    #rightSidebar > br, #leftSidebar > br {
+        display: none;
+    }
+
+    #rightSidebar {
+        //width: 270px;
+        //.span3;
+    }
+
+    #sizer {
+        .clearfix;
+    }
+}
+
+// Nav
+// ------------------------
+
+#navbar {
+
+    .navbar; // Map to bootstrap .navbar
+    .navbar-inner; // Map to bootstrap .navbar-inner
+    margin-bottom: 0;
+
+    
+    .nav {
+
+        display: inline-block;
+        padding-left: 0;
+        width:100%;
+
+        li {
+            &:first-child {
+                i {
+                    .cdrs-icon-navy;
+                }
+            }
+
+            img {
+                width: 24px;
+                padding: 0;
+            }
+        }
+
+        .active:first-child {
+            i {
+                .cdrs-icon-desat;
+            }
+        }
+
+    }
+
+    ul.menu {
+            .nav; // Map to bootstrap .nav
+
+            li {
+                .clear-space;
+                line-height: 1em !important;
+                float: left;
+                padding: 0;
+            }
+
+            a:link, a:visited, a:hover {
+                padding: 12px 13px 10px !important;
+                text-transform: none;
+
+                background: none;
+            }
+
+            a:link, a:visited {
+                display: block;
+                color: @navbarLinkColor;
+            font-size: @baseFontSize *1.08 !important ; // Make this the same size as other text
+
+        }
+
+        a:hover {
+            color: @navbarLinkColorHover;
+            text-decoration: none;
+            background-color: @navbarLinkBackgroundActive;
+            .box-shadow(inset 0 3px 8px rgba(0,0,0,.125))
+        }
+    }
+    
+}
+
+// Breadcrumbs
+// ------------------------
+
+
+
+
+// Header
+// ------------------------
+
+body > #container > #header {
+    background: none;
+    padding: 0;
+    text-align: left;
+
+    h1 {
+
+        color: @columbiaNavyDark;
+        font-size: 45px;
+        line-height: 41px;
+        padding: 0;
+
+        a:link, a:visited {
+            color: @columbiaNavyDark;
+        }
+
+        a:hover { text-decoration: none; }
+
+    }
+}
+
+// Forms
+// -----------------------
+
+form {
+    select, textarea, input[type="text"], input[type="password"], 
+    input[type="datetime"], input[type="datetime-local"], 
+    input[type="date"], input[type="month"], input[type="time"], 
+    input[type="week"], input[type="number"], input[type="email"], 
+    input[type="url"], input[type="search"], input[type="tel"], 
+    input[type="color"], input[type="file"], .uneditable-input {
+        margin-bottom: @baseFontSize/2;
+    }
+    input[type="submit"], input[type="reset"], input[type="button"] {
+        .btn;
+        display: block;
+        margin-top: @baseFontSize/2;
+    }
+    input[type="checkbox"] {
+        float: left;
+        margin: 6px 10px 0px 2px;
+    }
+    input[type="radio"] {
+        float: none;
+        margin: -4px 5px 0 2px;
+    }
+    select[multiple], select[size] {  /* Fix oddness where only the size element is applied inconsistantly */
+        height: @inputHeight; /* In IE7, the height of the select element cannot be changed by height, only font-size */
+        *margin-top: 4px; /* For IE7, add top margin to align select with labels */
+        line-height: @inputHeight;
+    }
+    label {
+        display: inline-block;
+    }
+}
+
+.value form {
+    margin-bottom: 0;
+     input[type="submit"], input[type="reset"], input[type="button"] {
+        display: inline-block;
+        margin-top: @baseFontSize/-2;
+     }
+}
+
+.instruct {
+    .alert;
+    .alert-info;
+}
+
+// Tables 
+// ------------------------
+
+table, table.data, table.listing {
+    tr.highlight {
+        .highlight;
+    }
+    td {
+        &.label {
+            display: block;
+            float: left;
+            margin: 0 0 5px;
+            padding: 5px 0 0;
+            width: auto;
+
+            background: none;
+
+            color: #333;
+            font-weight: normal;
+            font-size: @baseFontSize;
+            text-align: right;
+
+            cursor: pointer;
+            text-shadow: none;
+        }
+
+        &.value {
+            padding-left: 0px;
+        }
+    }
+}
+
+
+// CDRS Icons
+// ---------------------
+
+[class^="cdrs-icon-"], [class*=" cdrs-icon-"] {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    line-height: 14px;
+    vertical-align: text-top;
+    background-image: url("@{cdrsIconSpritePath}");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    margin-top:1px;
+}
+// Addition to make BS standard icons light up on hover
+.navbar-inverse .nav > li > a:hover > [class^="cdrs-icon-"],
+.navbar-inverse .nav > li > a:hover > [class*=" cdrs-icon-"] {
+    background-image: url("@{iconWhiteSpritePath}");
+}
+
+// White icons with optional class, or on hover/active states of certain elements
+.cdrs-icon-white,
+.nav-tabs > .active > a > [class^="cdrs-icon-"],
+.nav-tabs > .active > a > [class*=" cdrs-icon-"],
+.nav-pills > .active > a > [class^="cdrs-icon-"],
+.nav-pills > .active > a > [class*=" cdrs-icon-"],
+.nav-list > .active > a > [class^="cdrs-icon-"],
+.nav-list > .active > a > [class*=" cdrs-icon-"],
+.navbar-inverse .nav > .active > a > [class^="cdrs-icon-"],
+.navbar-inverse .nav > .active > a > [class*=" cdrs-icon-"],
+.navbar-inverse .nav > li > a:hover > [class^="cdrs-icon-"],
+.navbar-inverse .nav > li > a:hover > [class*=" cdrs-icon-"],
+.dropdown-menu > li > a:hover > [class^="cdrs-icon-"],
+.dropdown-menu > li > a:hover > [class*=" cdrs-icon-"],
+.dropdown-menu > .active > a > [class^="cdrs-icon-"],
+.dropdown-menu > .active > a > [class*=" cdrs-icon-"] {
+    background-image: url("@{cdrsIconWhiteSpritePath}");
+}
+
+.cdrs-icon-color {
+    background-image: url("@{cdrsIconColorSpritePath}");
+}
+
+.cdrs-icon-navy {
+    background-image: url("@{cdrsIconNavySpritePath}");
+}
+
+.cdrs-icon-desat {
+    background-image: url("@{cdrsIconDesatSpritePath}");
+}
+
+.cdrs-icon-crown {
+    background-position: 0 0;
+}
+
+.cdrs-icon-cdrs {
+    background-position: -24px 0;
+}
+
+
+// OCS Annoyances
+// ---------------------
+
+// Get rid of the dotted borders
+
+#navbar,
+#content {
+    border: none;
+}
+
+.highlight {
+    .alert;
+}
