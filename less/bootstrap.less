@@ -9,12 +9,13 @@
  */
 
 // CSS Reset
+@import "cdrs-pkp-reset.less"; // Resets many PKP styles to prep for bootstrap
 @import "reset.less";
-@import "cdrs-pkp-reset.less";
 
 // Core variables and mixins
+@import "palette-columbia-u.less"; // Colors of Columbia University
+@import "palette-athena-center.less"; // Colors of the Athena Center for Women's Leadership
 @import "variables.less"; // Modify this for custom colors, font-sizes, etc
-@import "cu-colors.less"; // Columbia University colors
 @import "mixins.less";
 
 // Grid system and page structure
@@ -62,7 +63,7 @@
 @import "hero-unit.less";
 
 // CDRS styles
-@import "cdrs-variables.less";
+@import "site-styles.less"; // Additional generic site styles
 
 // Utility classes
 @import "utilities.less"; // Has to be last to override when necessary
