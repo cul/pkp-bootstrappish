@@ -51,10 +51,11 @@ body {
 
             #main {
 
-                h1, h2, h3, h4, h5, h6 {
-                    font-family: @headingsFontFamily;
-                    font-weight: @headingsFontWeight;
-                    margin: 0 0 10px;
+                h1, h2, h3 {
+                    .headingStyles;
+                }
+                h4, h5, h6 {
+                    .smallHeadingStyles;
                 }
 
                 #grid > .core >.span(9); // 620px
@@ -81,9 +82,11 @@ body {
 
                 #content {
                     .clear-space;
-                    h1, h2, h3, h4, h5, h6 {
-                        font-family: @headingsFontFamily;
-                        font-weight: @headingsFontWeight;
+                    h1, h2, h3 {
+                        .headingStyles
+                    }
+                    h4, h5, h6 {
+                        .smallHeadingStyles;
                     }
                     h4 { font-size: @baseFontSize * 1.25; } // Exported from type.less
                 }
@@ -499,4 +502,18 @@ table, table.data, table.listing {
 
 .highlight {
     .alert;
+}
+
+
+// Misc
+// -----
+.headingStyles {
+    font-family: @headingsFontFamily;
+    font-weight: @headingsFontWeight;
+    margin: 0 0 10px;
+}
+
+.smallHeadingStyles {
+    .headingStyles;
+    font-weight: 400;
 }
