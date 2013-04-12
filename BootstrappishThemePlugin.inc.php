@@ -59,7 +59,7 @@ class BootstrappishThemePlugin extends ThemePlugin {
 		$templateMgr->addJavaScript('plugins/themes/bootstrappish/js/custom.js');
 		
 		if (($stylesheetFilename = $this->getStylesheetFilename()) != null) {
-			$path = Request::getBaseUrl() . '/' . $this->getPluginPath() . '/' . $stylesheetFilename .'?bootstrap';
+			$path = Request::getBaseUrl() . '/' . $this->getPluginPath() . '/css/' . $stylesheetFilename .'?bootstrappish';
 			$templateMgr->addStyleSheet($path);
 		}
 
