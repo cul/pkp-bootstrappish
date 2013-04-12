@@ -3,7 +3,7 @@
 /**
  * @file BootstrappishThemePlugin.inc.php
  *
- * Copyright (c) 2000-2012 John Willinsky
+ * Copyright (c) 2013 Christopher Anderton
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class BootstrappishThemePlugin
@@ -31,7 +31,7 @@ class BootstrappishThemePlugin extends ThemePlugin {
 	}
 
 	function getDescription() {
-		return 'Twitter Bootstrappish styling. Shame about the templates';
+		return 'Remaps twitter Bootstrap to fit PKP without modifying templates';
 	}
 
 	function getStylesheetFilename() {
@@ -54,11 +54,16 @@ class BootstrappishThemePlugin extends ThemePlugin {
 
 		// Add in Bootstrap JS
 		$templateMgr->addJavaScript('plugins/themes/bootstrappish/js/bootstrap.min.js');
+
+		// Add in custom JS scripts to hold miscellany
+		$templateMgr->addJavaScript('plugins/themes/bootstrappish/js/custom.js');
 		
 		if (($stylesheetFilename = $this->getStylesheetFilename()) != null) {
-			$path = Request::getBaseUrl() . '/' . $this->getPluginPath() . '/' . $stylesheetFilename;
+			$path = Request::getBaseUrl() . '/' . $this->getPluginPath() . '/' . $stylesheetFilename .'?bootstrap';
 			$templateMgr->addStyleSheet($path);
 		}
+
+
 	}
 
 }
