@@ -65,6 +65,7 @@ function bootstrappify_nav(navbarSelector){
 	$(navbarSelector+' ul')
 	.wrapAll('<div class="navbar-inner" />')
 	.wrapAll('<div class="container" />')
+	.removeClass('menu')
 	.addClass('nav');
 
 	// Navbar modifications

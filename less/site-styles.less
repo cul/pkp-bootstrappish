@@ -262,7 +262,7 @@ br { display: block; } // Why? ;_;
 #navbar {
 
     .navbar; // Map to bootstrap .navbar
-    .navbar-inner; // Map to bootstrap .navbar-inner
+    // .navbar-inner; // Map to bootstrap .navbar-inner
     margin-bottom: 0;
 
     & ul.menu a:link, 
@@ -306,38 +306,44 @@ br { display: block; } // Why? ;_;
     }
 
     ul.menu {
-            .nav; // Map to bootstrap .nav
+        li {
+            .clear-space;
+            line-height: 1em !important;
+            float: left;
+            padding: 0;
+        }
+        a:link, a:visited, a:hover {
+            background: none;
+        }
+        a:link, a:visited {
+            color: @navbarLinkColor;
+        }
+        a:hover {
+            color: @navbarLinkColorHover;
+            background-color: @navbarLinkBackgroundActive;
+        }
+    }
 
-            li {
-                .clear-space;
-                line-height: 1em !important;
-                float: left;
-                padding: 0;
-            }
+    ul.menu, ul.nav {
+            .nav; // Map to bootstrap .nav
 
             a:link, a:visited, a:hover {
                 padding: 12px 13px 10px !important;
                 text-transform: none;
-
-                background: none;
             }
 
             a:link, a:visited {
                 display: block;
-                color: @navbarLinkColor;
-            font-size: @baseFontSize *1.08 !important ; // Make this the same size as other text
+                font-size: @baseFontSize *1.08 !important ; // Make this the same size as other text
+            }
 
+            a:hover {
+                text-decoration: none;
+                .box-shadow(inset 0 3px 8px rgba(0,0,0,.125))
+            }
         }
 
-        a:hover {
-            color: @navbarLinkColorHover;
-            text-decoration: none;
-            background-color: @navbarLinkBackgroundActive;
-            .box-shadow(inset 0 3px 8px rgba(0,0,0,.125))
-        }
     }
-    
-}
 
 // Breadcrumbs
 // ------------------------
