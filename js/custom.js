@@ -7,7 +7,7 @@
  $(document).ready(function(){
  	var navbarSelector = '#navbar';
  	shorten_titles(
- 		"On Our Terms: The Undergraduate Journal of the Athena Center for Women's Leadership at Barnard College",
+ 		"On Our Terms: The Undergraduate Journal of the Athena Center for Leadership Studies",
  		"On Our Terms"
  		);
  	bootstrappify_nav(navbarSelector);
