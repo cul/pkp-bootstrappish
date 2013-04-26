@@ -4,44 +4,90 @@
  * This is a place to hold your custom scripts for your site
  * ========================================================= */
 
-/* 
- * Use functions like this to call additional javascript files through js.This * way you don't have to add any additional code to the template 
- */
-// (function() {
-//   var url = "https://raw.github.com/jquery/jquery-color/master/jquery.color.js";
-//   $.getScript(url, function() {
-//     $("#go").click(function(){
-//       $(".block")
-//         .animate( { backgroundColor: "rgb(255, 180, 180)" }, 1000 )
-//         .delay(500)
-//         .animate( { backgroundColor: "olive" }, 1000 )
-//         .delay(500)
-//         .animate( { backgroundColor: "#00f" }, 1000 );
-//     });
-//   });
-// })();
+ $(document).ready(function(){
+ 	var navbarSelector = '#navbar';
+ 	shorten_titles(
+ 		"On Our Terms: The Undergraduate Journal of the Athena Center for Women's Leadership at Barnard College",
+ 		"On Our Terms"
+ 		);
+ 	bootstrappify_nav(navbarSelector);
 
-/* 
- * Trunctate the long title of "On Our Terms" to something more breadcrumb
- * friendly. 
- */
+ 	// Reorder menu items
+	$(navbarSelector+' #home').appendTo(menuSelector);
+	$(navbarSelector+' #about').appendTo(menuSelector);
+	$(navbarSelector+' #userMenu').appendTo(menuSelector);
+	$(navbarSelector+' #current').appendTo(menuSelector); // Move current to the right of about
+	$(navbarSelector+' #archiveMenu').appendTo(menuSelector);
 
-// Long title
-fullTitle = 'On Our Terms: The Undergraduate Journal of the Athena Center for Leadership Studies at Barnard College';
+ });
 
-// Friendly title
-friendlyTitle = 'On Our Terms';
-
-$(document).ready(function(){
+// Truncate long titles to friendly titles
+function shorten_titles(fullTitle, friendlyTitle){
+	fullTitle = 'On Our Terms: The Undergraduate Journal of the Athena Center for Leadership Studies at Barnard College';
+ 	friendlyTitle =	'On Our Terms';
 	// Shorten the title in the breadcrumbs
 	$('#breadcrumb a').each(function() {
-		if( $(this).text() == fullTitle ) { 
-			$(this).text(friendlyTitle);
-		}
+		if( $(this).text() == fullTitle ) $(this).text(friendlyTitle);
 	});
 
-	// Hide the page title if it's the journal title
+	// If the journal title is the page title, hide it
 	if( $('#breadcrumb + h2').text() == fullTitle ) { 
-			$('#breadcrumb + h2').hide();
-		}
-});
+		$('#breadcrumb + h2').hide();
+	}
+}
+
+function bootstrappify_nav_submenu(menuParentObject, menuChildObjects){
+	var submenuObject = $('<ul/>').addClass('dropdown-menu');
+	menuParentObject.addClass('dropdown');
+
+	// Create menu label
+	//menuParentObject.addClass('dropdown');
+	menuParentObject.find('a').attr({
+		"class": "dropdown-toggle", 
+		"data-toggle": "dropdown", 
+	});
+
+	// Add submenu items
+	$.each(menuChildObjects, function(index, value){
+		submenuObject.append(value);
+	});
+
+	// Attach submenu to parent menu
+	menuParentObject.append(submenuObject);
+
+	return menuParentObject;
+}
+
+function bootstrappify_nav(navbarSelector){
+
+	// Build bootstrap navbar scaffolding
+	$(navbarSelector).addClass('navbar');
+	$(navbarSelector+' ul')
+	.wrapAll('<div class="navbar-inner" />')
+	.wrapAll('<div class="container" />')
+	.removeClass('menu')
+	.addClass('nav');
+
+	// Navbar modifications
+	menuSelector = navbarSelector+' .menu';
+
+	// Move register under login
+	var menuParentObject = $(navbarSelector+' #login');	
+	var menuChildObjects = new Array(
+		menuParentObject.clone(),
+		$(navbarSelector+' #userHome'),
+		$(navbarSelector+' #register'),
+		$(navbarSelector+' #userMenu')
+		);
+	menuParentObject.attr('id', menuParentObject.attr('id')+'Menu');
+	$(navbarSelector+" .nav").append(bootstrappify_nav_submenu(menuParentObject, menuChildObjects));
+
+	// Move search under archives
+	var menuParentObject = $(navbarSelector+' #archives');	
+	var menuChildObjects = new Array(
+		menuParentObject.clone(),
+		$(navbarSelector+' #search')
+		);
+	menuParentObject.attr('id', menuParentObject.attr('id')+'Menu');
+	$(navbarSelector+" .nav").append(bootstrappify_nav_submenu(menuParentObject, menuChildObjects));
+}
