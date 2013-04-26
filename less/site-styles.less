@@ -147,12 +147,6 @@ body {
     }
 }
 
-#navbar ul.menu a:link, #navbar ul.menu a:visited, #navbar ul.menu a:hover {
-padding: 10px 13px 10px!important;
-text-transform: none;
-background: 0;
-}
-
 // Typography
 // ------------------------
 
@@ -271,6 +265,13 @@ br { display: block; } // Why? ;_;
     .navbar-inner; // Map to bootstrap .navbar-inner
     margin-bottom: 0;
 
+    & ul.menu a:link, 
+    & ul.menu a:visited, 
+    & ul.menu a:hover {
+        background: 0;
+        padding: 10px 13px 10px!important;
+        text-transform: none;
+    }
     
     .nav {
 
@@ -297,6 +298,11 @@ br { display: block; } // Why? ;_;
             }
         }
 
+    }
+
+    .navbar-inner{
+        padding-left: 10px;
+        padding-right: 10px;
     }
 
     ul.menu {
