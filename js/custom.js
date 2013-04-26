@@ -38,14 +38,15 @@ function shorten_titles(fullTitle, friendlyTitle){
 
 function bootstrappify_nav_submenu(menuParentObject, menuChildObjects){
 	var submenuObject = $('<ul/>').addClass('dropdown-menu');
-	menuParentObject.addClass('dropdown').append('<b class="caret"/>');
+	menuParentObject.addClass('dropdown');
 
 	// Create menu label
-	//menuParentObject.addClass('dropdown');
-	menuParentObject.find('a').attr({
-		"class": "dropdown-toggle", 
-		"data-toggle": "dropdown", 
-	});
+	menuParentObject
+		.find('a').attr({
+			"class": "dropdown-toggle", 
+			"data-toggle": "dropdown", 
+		})
+		.append('<b class="caret"/>');
 
 	// Add submenu items
 	$.each(menuChildObjects, function(index, value){
