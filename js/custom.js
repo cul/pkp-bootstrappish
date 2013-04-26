@@ -7,7 +7,7 @@
  $(document).ready(function(){
  	var navbarSelector = '#navbar';
  	shorten_titles(
- 		"On Our Terms: The Undergraduate Journal of the Athena Center for Leadership Studies",
+ 		'On Our Terms: The Undergraduate Journal of the Athena Center for Leadership Studies',
  		"On Our Terms"
  		);
  	bootstrappify_nav(navbarSelector);
@@ -23,8 +23,7 @@
 
 // Truncate long titles to friendly titles
 function shorten_titles(fullTitle, friendlyTitle){
-	fullTitle = 'On Our Terms: The Undergraduate Journal of the Athena Center for Leadership Studies at Barnard College';
- 	friendlyTitle =	'On Our Terms';
+	
 	// Shorten the title in the breadcrumbs
 	$('#breadcrumb a').each(function() {
 		if( $(this).text() == fullTitle ) $(this).text(friendlyTitle);
