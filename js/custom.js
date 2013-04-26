@@ -38,7 +38,7 @@ function shorten_titles(fullTitle, friendlyTitle){
 
 function bootstrappify_nav_submenu(menuParentObject, menuChildObjects){
 	var submenuObject = $('<ul/>').addClass('dropdown-menu');
-	menuParentObject.addClass('dropdown');
+	menuParentObject.addClass('dropdown').append('<b class="caret"/>');
 
 	// Create menu label
 	//menuParentObject.addClass('dropdown');
