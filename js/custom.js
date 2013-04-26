@@ -23,7 +23,7 @@
 
 // Truncate long titles to friendly titles
 function shorten_titles(fullTitle, friendlyTitle){
-	
+
 	// Shorten the title in the breadcrumbs
 	$('#breadcrumb a').each(function() {
 		if( $(this).text() == fullTitle ) $(this).text(friendlyTitle);
@@ -75,9 +75,7 @@ function bootstrappify_nav(navbarSelector){
 	var menuParentObject = $(navbarSelector+' #login');	
 	var menuChildObjects = new Array(
 		menuParentObject.clone(),
-		$(navbarSelector+' #userHome'),
-		$(navbarSelector+' #register'),
-		$(navbarSelector+' #userMenu')
+		$(navbarSelector+' #register')
 		);
 	menuParentObject.attr('id', menuParentObject.attr('id')+'Menu');
 	$(navbarSelector+" .nav").append(bootstrappify_nav_submenu(menuParentObject, menuChildObjects));
