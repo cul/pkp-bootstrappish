@@ -39,7 +39,8 @@ body {
                 position: relative;
 
                 img {
-                    padding-top:59px;
+                    padding-top:40px;
+                    width: 140px;
                 }
             }
         }
@@ -59,16 +60,18 @@ body {
 
             #main {
 
+                overflow:hidden;
+
+                #grid > .core > .span(9); // 620px
+                .clear-space;
+                float: left;
+
                 h1, h2, h3 {
                     .headingStyles;
                 }
                 h4, h5, h6 {
                     .smallHeadingStyles;
                 }
-
-                #grid > .core >.span(9); // 620px
-                .clear-space;
-                float: left;
                 
                 #navbar {
                     .clear-space;
@@ -200,7 +203,7 @@ br { display: block; } // Why? ;_;
             font-weight: @headingsFontWeight;
             font-size: @baseFontSize;
             line-height: @baseLineHeight;
-            color: @athenaCenterAccent;
+            color: @tohmGreyDarkHex;
             text-rendering: optimizelegibility; // Fix the character spacing for headings
             text-transform: none;
 
@@ -260,76 +263,103 @@ br { display: block; } // Why? ;_;
 // ------------------------
 
 #navbar {
-
     .navbar; // Map to bootstrap .navbar
-    .navbar-inner; // Map to bootstrap .navbar-inner
     margin-bottom: 0;
+    ul.menu {
+        // .navbar-inner; // Map to bootstrap .navbar-inner
+        min-height: @navbarHeight;
+        padding-left:  20px;
+        padding-right: 20px;
+        // #gradient > .vertical(@tohmGreen, @tohmGrey);
+        border: 1px solid @navbarBorder;
+        .border-radius(@baseBorderRadius);
+        .box-shadow(0 1px 4px rgba(0,0,0,.065));
 
-    & ul.menu a:link, 
-    & ul.menu a:visited, 
-    & ul.menu a:hover {
+      // Prevent floats from breaking the navbar
+      .clearfix();
+
+      a:link, 
+      a:visited, 
+      a:hover {
         background: 0;
         padding: 10px 13px 10px!important;
         text-transform: none;
     }
 
-    &.navbar .nav .dropdown-toggle .caret {
-        margin-top: 14px;
-        margin-left: 4px;
+    a:hover {
+        // Add hover effect
+        background: @grassGreen;
+        background: -moz-linear-gradient(top, @grassGreen 0%, @tohmGreen 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,@grassGreen), color-stop(100%,@tohmGreen));
+        background: -webkit-linear-gradient(top, @grassGreen 0%,@tohmGreen 100%);
+        background: -o-linear-gradient(top, @grassGreen 0%,@tohmGreen 100%);
+        background: -ms-linear-gradient(top, @grassGreen 0%,@tohmGreen 100%);
+        background: linear-gradient(to bottom, @grassGreen 0%,@tohmGreen 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@grassGreen', endColorstr='@tohmGreen',GradientType=0 );
+        border-color: black;
+        color: @tohmGreyDarkHex;
+        cursor: pointer;
     }
-    
-    .nav {
+};
+}
 
-        display: inline-block;
-        padding-left: 0;
-        width:100%;
+&.navbar .nav .dropdown-toggle .caret {
+    margin-top: 14px;
+    margin-left: 4px;
+}
 
-        li {
-            &:first-child {
-                i {
-                    .cdrs-icon-navy;
-                }
-            }
+.nav {
 
-            img {
-                width: 24px;
-                padding: 0;
-            }
-        }
+    display: inline-block;
+    padding-left: 0;
+    width:100%;
 
-        .active:first-child {
+    li {
+        &:first-child {
             i {
-                .cdrs-icon-desat;
+                .cdrs-icon-navy;
             }
         }
 
-    }
-
-    .navbar-inner{
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-
-    ul.menu {
-        li {
-            .clear-space;
-            line-height: 1em !important;
-            float: left;
+        img {
+            width: 24px;
             padding: 0;
         }
-        a:link, a:visited, a:hover {
-            background: none;
-        }
-        a:link, a:visited {
-            color: @navbarLinkColor;
-        }
-        a:hover {
-            color: @navbarLinkColorHover;
-            background-color: @navbarLinkBackgroundActive;
+    }
+
+    .active:first-child {
+        i {
+            .cdrs-icon-desat;
         }
     }
 
-    ul.menu, ul.nav {
+}
+
+.navbar-inner{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+ul.menu {
+    li {
+        .clear-space;
+        line-height: 1em !important;
+        float: left;
+        padding: 0;
+    }
+    a:link, a:visited, a:hover {
+        background: none;
+    }
+    a:link, a:visited {
+        color: @navbarLinkColor;
+    }
+    a:hover {
+        color: @navbarLinkColorHover;
+        background-color: @navbarLinkBackgroundActive;
+    }
+}
+
+ul.menu, ul.nav {
             .nav; // Map to bootstrap .nav
 
             a:link, a:visited, a:hover {
@@ -344,11 +374,10 @@ br { display: block; } // Why? ;_;
 
             a:hover {
                 text-decoration: none;
-                .box-shadow(inset 0 3px 8px rgba(0,0,0,.125))
+                .box-shadow(inset 0 3px 8px rgba(0,0,0,.125));
             }
-        }
 
-    }
+        }
 
 // Breadcrumbs
 // ------------------------
@@ -458,6 +487,11 @@ table, table.data, table.listing {
 
         &.value {
             padding-left: 0px;
+        }
+
+        // Override OJS nowrap in tables
+        &.nowrap {
+            white-space: normal;
         }
     }
 }
